@@ -35,7 +35,6 @@ mod test {
     use crate::test;
     test!(
         DAY1.part1,
-
         empty: "" => 0,
         example: lines!(199 200 208 210 200 207 240 269 260 263) => 7,
         input: 1532,
