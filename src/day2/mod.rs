@@ -54,6 +54,6 @@ mod test {
         DAY2.part2,
         empty: "" => 0,
         example: lines!("forward 5" "down 5" "forward 8" "up 3" "down 8" "forward 2") => 900,
-        input: 1571,
+        input: 1845455714,
     );
 }
