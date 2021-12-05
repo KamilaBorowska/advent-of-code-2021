@@ -25,7 +25,7 @@ fn abs_sub(a: u16, b: u16) -> u16 {
     a.max(b) - a.min(b)
 }
 
-fn insert_range(map: &mut HashMap<(u16, u16), bool>, iter: impl IntoIterator<Item = (u16, u16)>) {
+fn insert_range(map: &mut HashMap<Point, bool>, iter: impl IntoIterator<Item = Point>) {
     for p in iter {
         map.entry(p).and_modify(|v| *v = true).or_insert(false);
     }
