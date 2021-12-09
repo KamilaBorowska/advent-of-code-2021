@@ -37,7 +37,7 @@ pub(super) const DAY9: Solution = Solution {
         for (y, row) in matrix.iter().enumerate() {
             for (x, height) in row.iter().enumerate() {
                 if is_lowest_point(&matrix, x, y) {
-                    sum += char::from(*height).to_digit(10).ok_or("Expected a digit")? + 1
+                    sum += char::from(*height).to_digit(10).ok_or("Expected a digit")? + 1;
                 }
             }
         }
