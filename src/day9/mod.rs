@@ -15,12 +15,11 @@ fn is_lowest_point(matrix: &[impl AsRef<[u8]>], x: usize, y: usize) -> bool {
 }
 
 fn recurse_basin(matrix: &mut [&mut [u8]], x: usize, y: usize) -> usize {
-    let height = matrix[y][x];
     matrix[y][x] = b'9';
     let neighbours: usize = neighbours(x, y)
         .map(|(x, y)| {
             if let Some(&other_height) = matrix.get(y).and_then(|row| row.get(x)) {
-                if other_height != b'9' && other_height > height {
+                if other_height != b'9' {
                     return recurse_basin(matrix, x, y);
                 }
             }
