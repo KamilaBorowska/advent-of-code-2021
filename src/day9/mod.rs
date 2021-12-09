@@ -48,7 +48,7 @@ pub(super) const DAY9: Solution = Solution {
         let mut sizes = BinaryHeap::new();
         for y in 0..matrix.len() {
             for x in 0..matrix[y].len() {
-                if is_lowest_point(&matrix, x, y) {
+                if matrix[y][x] != b'9' {
                     sizes.push(recurse_basin(&mut matrix, x, y));
                 }
             }
