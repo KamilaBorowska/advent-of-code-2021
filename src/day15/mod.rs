@@ -5,7 +5,7 @@ use std::error::Error;
 
 fn find_path(map: &mut [Vec<u8>]) -> Result<String, Box<dyn Error>> {
     let mut min_heap = BinaryHeap::new();
-    min_heap.push(((Reverse(0)), (0, 0)));
+    min_heap.push((Reverse(0), (0, 0)));
     let max_x = map.first().ok_or("Empty map")?.len() - 1;
     let max_y = map.len() - 1;
     while let Some((Reverse(cost), (x, y))) = min_heap.pop() {
