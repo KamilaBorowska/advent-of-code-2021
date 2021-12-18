@@ -1,6 +1,6 @@
+use std::env;
 use std::error::Error;
 use std::io::{self, Read, Write};
-use structopt::StructOpt;
 
 mod day1;
 mod day10;
@@ -49,20 +49,35 @@ const SOLUTIONS: &[Solution] = &[
     day18::DAY18,
 ];
 
-#[derive(StructOpt)]
-struct Options {
-    /// Day for which a solution should be ran
-    day: u8,
-    /// Input, if not provided taken from stdin
-    input: Option<String>,
-}
+const USAGE: &str = "advent-of-code-2021
+
+USAGE:
+    advent-of-code-2021 <day> [input]
+
+FLAGS:
+    -h, --help      Prints help information
+
+ARGS:
+    <day>      Day for which a solution should be ran
+    <input>    Input, if not provided taken from stdin";
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let opt = Options::from_args();
-    let solution = SOLUTIONS
-        .get(usize::from(opt.day) - 1)
-        .ok_or("Day number out of range")?;
-    let input = if let Some(input) = opt.input {
+    let mut args = env::args();
+    // Skip the program name
+    args.next();
+    let mut day = args.next();
+    if [Some("--help"), Some("-h")].contains(&day.as_deref()) {
+        day = None;
+    }
+    let day = if let Some(day) = day {
+        day
+    } else {
+        eprintln!("{}", USAGE);
+        return Ok(());
+    };
+    let day: usize = day.parse()?;
+    let solution = SOLUTIONS.get(day - 1).ok_or("Day number out of range")?;
+    let input = if let Some(input) = args.next() {
         input
     } else {
         let mut input = String::new();
