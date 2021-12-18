@@ -54,7 +54,7 @@ pub(super) const DAY10: Solution = Solution {
                         b'<' => 4,
                         _ => unreachable!(),
                     };
-                    score = char_score + 5u64 * score;
+                    score = char_score + 5_u64 * score;
                 }
                 scores.push(score);
             }

@@ -19,7 +19,7 @@ pub(super) const DAY17: Solution = Solution {
     part2: |input| {
         let (x0, x1, y0, y1) = parse(input)?;
         let mut count = 0;
-        for x in 0..x1 + 1 {
+        for x in 0..=x1 {
             for y in y0..-y0 {
                 let mut x_vel = x;
                 let mut y_vel = y;

@@ -14,16 +14,13 @@ impl SnailfishNumber {
     }
 
     fn parse_partial(s: &str, expected_separator: char) -> (Self, &str) {
-        match s.strip_prefix('[') {
-            Some(rest) => {
-                let (a, rest) = Self::parse_partial(rest, ',');
-                let (b, rest) = Self::parse_partial(&rest[1..], ']');
-                (Self::Pair(Box::new([a, b])), &rest[1..])
-            }
-            None => {
-                let index = s.find(expected_separator).unwrap();
-                (Self::Literal(s[..index].parse().unwrap()), &s[index..])
-            }
+        if let Some(rest) = s.strip_prefix('[') {
+            let (a, rest) = Self::parse_partial(rest, ',');
+            let (b, rest) = Self::parse_partial(&rest[1..], ']');
+            (Self::Pair(Box::new([a, b])), &rest[1..])
+        } else {
+            let index = s.find(expected_separator).unwrap();
+            (Self::Literal(s[..index].parse().unwrap()), &s[index..])
         }
     }
 

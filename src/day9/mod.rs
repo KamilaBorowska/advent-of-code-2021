@@ -2,9 +2,9 @@ use crate::Solution;
 use std::collections::BinaryHeap;
 
 fn neighbours(x: usize, y: usize) -> impl Iterator<Item = (usize, usize)> {
-    [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        .iter()
-        .map(move |(x_mod, y_mod)| ((x as isize + x_mod) as usize, (y as isize + y_mod) as usize))
+    [(!0, 0), (1, 0), (0, !0), (0, 1)]
+        .into_iter()
+        .map(move |(x_mod, y_mod)| (x.wrapping_add(x_mod), y.wrapping_add(y_mod)))
 }
 
 fn is_lowest_point(matrix: &[impl AsRef<[u8]>], x: usize, y: usize) -> bool {

@@ -78,9 +78,8 @@ impl<'a> Rooms<'a> {
             VisitState::Visited => {
                 if doubled {
                     return 0;
-                } else {
-                    self.doubled.set(true);
                 }
+                self.doubled.set(true);
             }
         }
         let mut sum = 0;

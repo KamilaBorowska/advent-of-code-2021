@@ -10,21 +10,21 @@ fn find_minima(input: &str, f: impl Fn(u16, u16) -> u32) -> Result<String, Box<d
         .collect::<Result<Vec<u16>, _>>()?;
     let mut min = *crabs.iter().min().unwrap_or(&0);
     let mut max = *crabs.iter().max().unwrap_or(&0);
-    let distance_sum = |mid| crabs.iter().map(|&v| f(v, mid)).sum();
+    let distance_sum = |middle| crabs.iter().map(|&v| f(v, middle)).sum();
     let mut min_sum: u32 = distance_sum(min);
     let mut max_sum = distance_sum(max);
     loop {
-        let mid = (min + max) / 2;
-        if mid == min {
+        let middle = (min + max) / 2;
+        if middle == min {
             return Ok(min_sum.min(max_sum).to_string());
         }
-        let sum = distance_sum(mid);
+        let sum = distance_sum(middle);
         if max_sum > min_sum {
             max_sum = sum;
-            max = mid;
+            max = middle;
         } else {
             min_sum = sum;
-            min = mid;
+            min = middle;
         }
     }
 }

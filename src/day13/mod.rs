@@ -57,7 +57,7 @@ pub(super) const DAY13: Solution = Solution {
         for y in 0..=max_y {
             output.push('\n');
             for x in 0..=max_x {
-                output.push(if points.contains(&(x, y)) { '█' } else { ' ' })
+                output.push(if points.contains(&(x, y)) { '█' } else { ' ' });
             }
         }
         Ok(output)

@@ -19,16 +19,16 @@ fn into_bits(b: &str) -> Result<u8, &'static str> {
 
 fn digit(bits: u8) -> Result<u8, &'static str> {
     Ok(match bits {
-        0b1110111 => 0,
-        0b0010010 => 1,
-        0b1011101 => 2,
-        0b1011011 => 3,
-        0b0111010 => 4,
-        0b1101011 => 5,
-        0b1101111 => 6,
-        0b1010010 => 7,
-        0b1111111 => 8,
-        0b1111011 => 9,
+        0b111_0111 => 0,
+        0b001_0010 => 1,
+        0b101_1101 => 2,
+        0b101_1011 => 3,
+        0b011_1010 => 4,
+        0b110_1011 => 5,
+        0b110_1111 => 6,
+        0b101_0010 => 7,
+        0b111_1111 => 8,
+        0b111_1011 => 9,
         _ => return Err("Unrecognized bit"),
     })
 }
@@ -59,12 +59,12 @@ pub(super) const DAY8: Solution = Solution {
             let mut outputs = into_bits(outputs)?;
             for bits in patterns.iter().chain(&outputs) {
                 let (guaranteed, remove) = match bits.count_ones() {
-                    2 => (0b0100100, true),
-                    3 => (0b0100101, true),
-                    4 => (0b0101110, true),
-                    5 => (0b1001001, false),
-                    6 => (0b1100011, false),
-                    7 => (0b1111111, false),
+                    2 => (0b010_0100, true),
+                    3 => (0b010_0101, true),
+                    4 => (0b010_1110, true),
+                    5 => (0b100_1001, false),
+                    6 => (0b110_0011, false),
+                    7 => (0b111_1111, false),
                     _ => return Err("Unrecognized number of bits".into()),
                 };
                 for (i, possible) in possible_positions.iter_mut().enumerate() {
@@ -96,7 +96,7 @@ pub(super) const DAY8: Solution = Solution {
                 *v = digit(new_v)?;
             }
             for (i, &output_digit) in (0..).zip(outputs.iter().rev()) {
-                output += u32::from(output_digit) * 10u32.pow(i);
+                output += u32::from(output_digit) * 10_u32.pow(i);
             }
         }
         Ok(output.to_string())
