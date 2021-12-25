@@ -20,6 +20,7 @@ mod day20;
 mod day21;
 mod day22;
 mod day23;
+mod day25;
 mod day3;
 mod day4;
 mod day5;
@@ -59,6 +60,11 @@ const SOLUTIONS: &[Solution] = &[
     day21::DAY21,
     day22::DAY22,
     day23::DAY23,
+    Solution {
+        part1: |_| todo!(),
+        part2: |_| todo!(),
+    },
+    day25::DAY25,
 ];
 
 const USAGE: &str = "advent-of-code-2021
