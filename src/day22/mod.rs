@@ -85,7 +85,7 @@ impl Map3D {
 
 fn get_ranges(i: impl Iterator<Item = [i32; 2]>) -> Vec<i32> {
     let mut v: Vec<i32> = i.flatten().collect();
-    v.sort();
+    v.sort_unstable();
     v.dedup();
     v
 }
